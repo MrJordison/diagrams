@@ -19,7 +19,13 @@
               var flowchart = require('../vendors/flowchart.js');
 
               var chart = flowchart.parse(inputContent);
-              chart.drawSVG('diagram');
+
+              if(options.stylePath == "")
+                chart.drawSVG('diagram');
+              else {
+                var styleContent = JSON.parse(fs.readFileSync(options.stylePath, 'utf8'));
+                chart.drawSVG('diagram', styleContent);
+              }
 
               // Write out the svg file
               fs.writeFileSync(options.outputPath, document.getElementById('diagram').innerHTML);

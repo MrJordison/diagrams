@@ -3,6 +3,7 @@
 var program = require('commander'),
     inputFilePath,
     outputSVGFilePath,
+    styleSVGFilePath,
     flowchart = require('../src/flowchart/flowchart'),
     fs = require('fs');
 
@@ -22,8 +23,14 @@ if(process.argv[3]){
 } else {
     outputSVGFilePath = inputFilePath + ".svg";
 }
+if(process.argv[4]){
+  styleSVGFilePath = process.argv[4];
+}
+else{
+  styleSVGFilePath = "";
+}
 
-flowchart(inputFilePath, outputSVGFilePath, function(err){
+flowchart(inputFilePath, outputSVGFilePath, styleSVGFilePath, function(err){
     if(err){
         console.error(err);
         process.exit(1);

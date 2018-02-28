@@ -2,12 +2,13 @@ var electron = require('electron'),
     proc = require('child_process'),
     path = require('path');
 
-function flowchart(inputPath, outputPath, cb) {
+function flowchart(inputPath, outputPath, stylePath, cb) {
     // Launch electron using our main.js
     var child = proc.spawn(electron, [
             path.resolve(__dirname, 'electron-main.js'),
             inputPath,
-            outputPath
+            outputPath,
+            stylePath
         ]);
 
     child.stdout.on('data', function (data) {
